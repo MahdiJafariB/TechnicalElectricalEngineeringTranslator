@@ -28,7 +28,7 @@ namespace TEET_Data.Repository
         {
             try
             {
-                db.Remove((string)word);
+                db.Remove(word);
                 return true;
             }
             catch

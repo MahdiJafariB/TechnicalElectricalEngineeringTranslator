@@ -151,9 +151,9 @@
             radioButtonEndWith.AutoSize = true;
             radioButtonEndWith.Location = new System.Drawing.Point(365, 49);
             radioButtonEndWith.Name = "radioButtonEndWith";
-            radioButtonEndWith.Size = new System.Drawing.Size(78, 21);
+            radioButtonEndWith.Size = new System.Drawing.Size(80, 21);
             radioButtonEndWith.TabIndex = 9;
-            radioButtonEndWith.Text = "End With";
+            radioButtonEndWith.Text = "EndsWith";
             radioButtonEndWith.UseVisualStyleBackColor = true;
             // 
             // radioButtonContains
@@ -173,9 +173,9 @@
             radioButtonStartWith.AutoSize = true;
             radioButtonStartWith.Location = new System.Drawing.Point(365, 5);
             radioButtonStartWith.Name = "radioButtonStartWith";
-            radioButtonStartWith.Size = new System.Drawing.Size(83, 21);
+            radioButtonStartWith.Size = new System.Drawing.Size(85, 21);
             radioButtonStartWith.TabIndex = 7;
-            radioButtonStartWith.Text = "Start With";
+            radioButtonStartWith.Text = "StartsWith";
             radioButtonStartWith.UseVisualStyleBackColor = true;
             // 
             // btnSearchFA

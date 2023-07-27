@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Windows.Forms;
 using TEET_Data;
 using TEET_Data.Repository;
+using Utility;
 
 namespace TEET_App
 {
@@ -14,9 +17,39 @@ namespace TEET_App
         public Main()
         {
             InitializeComponent();
+            words = repository.GetAllWords();
         }
 
         Repository repository = new Repository(Application.StartupPath + "Data.svg");
+        List<Word> words;
+
+        IEnumerable<Word> Query(string propertyName)
+        {
+            string txtBox = txtField.Text.ToLower();
+
+            var t = typeof(Word).GetProperties().Where(x => x.Name == propertyName).First();
+            // ?? throw new Exception("propertyName does not exist in the Word datatype.");
+
+            var temp1 = from word in words
+                        where radioButtonStartWith.Checked
+                        && t.GetValue(word).ToString().ToLower().StartsWith(txtBox)
+                        select word;
+            temp1 = temp1.Any() ? temp1 : null;
+
+            var temp2 = from word in words
+                        where radioButtonContains.Checked
+                        && t.GetValue(word).ToString().ToLower().Contains(txtBox)
+                        select word;
+            temp2 = temp2.Any() ? temp2 : null;
+
+            var temp3 = from word in words
+                        where radioButtonEndWith.Checked
+                        && t.GetValue(word).ToString().ToLower().EndsWith(txtBox)
+                        select word;
+            temp3 = temp3.Any() ? temp3 : null;
+
+            return temp1 ?? temp2 ?? temp3 ?? new List<Word>();
+        }
 
         void BindGrid(IEnumerable<Word> words)
         {
@@ -40,56 +73,32 @@ namespace TEET_App
 
         private void btnSearchWord_Click(object sender, EventArgs e)
         {
-            IEnumerable<Word> qry;
-            if (radioButtonStartWith.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordFace.ToLower().StartsWith(txtField.Text));
-            }
-            else if (radioButtonContains.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordFace.ToLower().Contains(txtField.Text));
-            }
-            else
-            {
-                qry = repository.GetAllWords().Where(w => w.WordFace.ToLower().EndsWith(txtField.Text));
-            }
-            BindGrid(qry);
+            var t = Query("WordFace").ToList(); // 14 milisecond
+            BindGrid(t);
         }
 
         private void btnSearchEN_Click(object sender, EventArgs e)
         {
-            IEnumerable<Word> qry;
-            if (radioButtonStartWith.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordEnglishMean.ToLower().StartsWith(txtField.Text));
-            }
-            else if (radioButtonContains.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordEnglishMean.ToLower().Contains(txtField.Text));
-            }
-            else
-            {
-                qry = repository.GetAllWords().Where(w => w.WordEnglishMean.ToLower().EndsWith(txtField.Text));
-            }
-            BindGrid(qry);
+            BindGrid(Query("WordEnglishMean"));
+            //IEnumerable<Word> qry;
+            //if (radioButtonStartWith.Checked)
+            //{
+            //    qry = words.Where(w => w.WordEnglishMean.ToLower().StartsWith(txtField.Text));
+            //}
+            //else if (radioButtonContains.Checked)
+            //{
+            //    qry = words.Where(w => w.WordEnglishMean.ToLower().Contains(txtField.Text));
+            //}
+            //else
+            //{
+            //    qry = words.Where(w => w.WordEnglishMean.ToLower().EndsWith(txtField.Text));
+            //}
+            //BindGrid(qry);
         }
 
         private void btnSearchFA_Click(object sender, EventArgs e)
         {
-            IEnumerable<Word> qry;
-            if (radioButtonStartWith.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordPersianMean.ToLower().StartsWith(txtField.Text));
-            }
-            else if (radioButtonContains.Checked)
-            {
-                qry = repository.GetAllWords().Where(w => w.WordPersianMean.ToLower().Contains(txtField.Text));
-            }
-            else
-            {
-                qry = repository.GetAllWords().Where(w => w.WordPersianMean.ToLower().EndsWith(txtField.Text));
-            }
-            BindGrid(qry);
+            BindGrid(Query("WordPersianMean"));
         }
         private void txtField_TextChanged(object sender, EventArgs e)
         {
@@ -102,6 +111,7 @@ namespace TEET_App
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             repository = new Repository(Application.StartupPath + "Data.svg");
+            words = repository.GetAllWords();
         }
 
         private void Main_SizeChanged(object sender, EventArgs e)

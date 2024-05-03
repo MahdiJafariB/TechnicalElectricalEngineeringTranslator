@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEET_App", "TEET_App\TEET_App.csproj", "{3351FEC5-C302-4FCF-B815-77E8F9113DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEET_Data", "TEET_Data\TEET_Data.csproj", "{B9AC8690-E8F3-4B37-BE06-EFEE896FECB4}"
+EndProject
+# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "..\Utility\Utility.csproj", "{EC8C2ABE-B84D-401E-9B3E-3B7826CB5B45}"
+# EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3351FEC5-C302-4FCF-B815-77E8F9113DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3351FEC5-C302-4FCF-B815-77E8F9113DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3351FEC5-C302-4FCF-B815-77E8F9113DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3351FEC5-C302-4FCF-B815-77E8F9113DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9AC8690-E8F3-4B37-BE06-EFEE896FECB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9AC8690-E8F3-4B37-BE06-EFEE896FECB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9AC8690-E8F3-4B37-BE06-EFEE896FECB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9AC8690-E8F3-4B37-BE06-EFEE896FECB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8C2ABE-B84D-401E-9B3E-3B7826CB5B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8C2ABE-B84D-401E-9B3E-3B7826CB5B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8C2ABE-B84D-401E-9B3E-3B7826CB5B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8C2ABE-B84D-401E-9B3E-3B7826CB5B45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E90D764-653C-4E99-91A7-1D0E0B9595A4}
+	EndGlobalSection
+EndGlobal
